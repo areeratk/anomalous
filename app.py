@@ -28,7 +28,7 @@ trump_tweeters = pd.read_csv(os.path.join("Data","trump_tweeters.csv"))
 
 wsb_reddit0 = pd.read_csv(os.path.join("static","data","WSB_rd_count_0.csv"))
 wsb_reddit1 = pd.read_csv(os.path.join("static","data","WSB_rd_count_1.csv"))
-# wsb_reddit2 = pd.read_csv(os.path.join("static","data","WSB_rd_count_2.csv"))
+wsb_reddit2 = pd.read_csv(os.path.join("static","data","WSB_rd_count_2.csv"))
 # wsb_reddit3 = pd.read_csv(os.path.join("static","data","WSB_rd_count_3.csv"))
 # wsb_reddit4 = pd.read_csv(os.path.join("static","data","WSB_rd_count_4.csv"))
 # wsb_reddit5 = pd.read_csv(os.path.join("static","data","WSB_rd_count_5.csv"))
@@ -37,7 +37,7 @@ frames = [wsb_reddit0,wsb_reddit1]#,wsb_reddit2,wsb_reddit3,wsb_reddit4,wsb_redd
 wsb_reddit=pd.concat(frames)
 del wsb_reddit0
 del wsb_reddit1
-# del wsb_reddit2
+del wsb_reddit2
 # del wsb_reddit3
 # del wsb_reddit4
 # del wsb_reddit5
