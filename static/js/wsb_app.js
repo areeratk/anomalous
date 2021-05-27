@@ -1,11 +1,11 @@
 // Get a reference to the table
 
 // from data.js
-d3.json("./api/speech").then(function(tableData) {
+d3.json("./api/wsb").then(function(tableData) {
   
     var tbody = d3.select("#tweet_table").select("tbody");
 
-    columns = ["Date","Text"]
+    columns = ["Date","Text","Favorites"]
 
     // create a row for each object in the data
     var rows = tbody.selectAll("tr")
