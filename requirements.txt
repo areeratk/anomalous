@@ -10,6 +10,6 @@ pytz==2021.1
 six==1.15.0
 scipy
 pickleshare
-scikit-learn
+scikit-learn==0.23.2
 Werkzeug==1.0.1
 gunicorn==19.9.0
