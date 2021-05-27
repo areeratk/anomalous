@@ -1,0 +1,98 @@
+table.dataTable thead .sorting:after,
+table.dataTable thead .sorting:before,
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting_asc:before,
+table.dataTable thead .sorting_asc_disabled:after,
+table.dataTable thead .sorting_asc_disabled:before,
+table.dataTable thead .sorting_desc:after,
+table.dataTable thead .sorting_desc:before,
+table.dataTable thead .sorting_desc_disabled:after,
+table.dataTable thead .sorting_desc_disabled:before {
+    bottom: .5em;
+}
+
+body {
+    background-color: rgb(180, 192, 201);
+}
+
+.page_header {
+    background-color: green!important;
+}
+
+.page_right {
+    float: right;
+    width: 96%;
+    margin: 10px 10px 10px 10px;
+    padding: 30px;
+}
+
+.page_left {
+    float: left;
+    width: 110%;
+    margin: 10px 10px 10px 10px;
+    /* padding: 30px; */
+}
+
+.column {
+    flex: 33.33%;
+    padding: 5px;
+}
+
+#table-area {
+    float: center;
+    width: 120%;
+    height: 100%;
+    /* margin: 1000px 50px 50px 50px; */
+    padding: 60px;
+}
+
+.table {
+    background-color: whitesmoke;
+    /* position: center; */
+    /* padding-left: 30px; */
+}
+.twitter-timeline {
+    margin-left:10px;
+    
+  
+}
+
+.gif {
+    margin-top: 5%;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.giphy2 {
+    margin-left: 1%;
+}
+
+.bubble {
+    margin-left: 1%;
+    margin-top: 1%;
+    stroke-width: 1;
+    stroke: white
+}
+.sent-table {
+    margin:8px;
+    /* width:70%; 
+    height:70%; */
+}
+/* .sentiment {
+    margin-left:8px;
+} */
+ img {vertical-align: middle;}
+.market-viz {
+    margin:8px;
+    /* width:95%; 
+    height:95%; */
+}
+
+.text {
+    margin-top:10px;
+    margin-left: 5px;
+    margin-right: 20px;
+
+    
+}
+
