@@ -29,7 +29,24 @@ loaded_model = pickle.load(open(filename, 'rb'))
 
 trump_tweeters = pd.read_csv(os.path.join("Data","trump_tweeters.csv"))
 
-wsb_reddit = pd.read_csv(os.path.join("Data","WSB_rd_count.csv"))
+wsb_reddit0 = pd.read_csv(os.path.join("static","data","WSB_rd_count_0.csv"))
+wsb_reddit1 = pd.read_csv(os.path.join("static","data","WSB_rd_count_1.csv"))
+wsb_reddit2 = pd.read_csv(os.path.join("static","data","WSB_rd_count_2.csv"))
+wsb_reddit3 = pd.read_csv(os.path.join("static","data","WSB_rd_count_3.csv"))
+wsb_reddit4 = pd.read_csv(os.path.join("static","data","WSB_rd_count_4.csv"))
+wsb_reddit5 = pd.read_csv(os.path.join("static","data","WSB_rd_count_5.csv"))
+
+frames = [wsb_reddit0,wsb_reddit1,wsb_reddit2,wsb_reddit3,wsb_reddit4,wsb_reddit5]
+wsb_reddit=pd.concat(frames)
+del wsb_reddit0
+del wsb_reddit1
+del wsb_reddit2
+del wsb_reddit3
+del wsb_reddit4
+del wsb_reddit5
+import gc
+gc.collect()
+
 
 wsb_reddit = wsb_reddit.loc[(wsb_reddit['text'].notnull()) & (wsb_reddit['text'].str.len() > 10) ]
 wsb_reddit =wsb_reddit.head(125000)
