@@ -8,13 +8,10 @@ from pandas.core.indexes.period import PeriodIndex
 
 from sklearn.linear_model import LogisticRegression
 
-import sqlalchemy
-from sqlalchemy.ext.automap import automap_base
-from sqlalchemy.orm import Session
-from sqlalchemy import create_engine, func
+
 
 from flask import Flask, jsonify, render_template, request
-from flask_sqlalchemy import SQLAlchemy
+
 app = Flask(__name__)
 
 
