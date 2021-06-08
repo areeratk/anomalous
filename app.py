@@ -6,7 +6,8 @@ import pickle
 
 from pandas.core.indexes.period import PeriodIndex
 
-from sklearn.linear_model import LogisticRegression
+from sklearn.linear_model import LogisticRegression 
+from sklearn.ensemble import RandomForestClassifier
 
 
 
@@ -24,6 +25,17 @@ wsb_lmkt_x.set_index("Date", inplace=True)
 filename = 'wsb_lgcap_model.sav'
 loaded_model = pickle.load(open(filename, 'rb'))
 
+filename2 = 'powell_lgcap_model.sav'
+loaded_model2 = pickle.load(open(filename2, 'rb'))
+
+filename3 = 'powell_mdcap_model.sav'
+loaded_model3 = pickle.load(open(filename3, 'rb'))
+
+filename4 = 'powell_smcap_model.sav'
+loaded_model4 = pickle.load(open(filename4, 'rb'))
+
+
+
 trump_tweeters = pd.read_csv(os.path.join("Data","trump_tweeters.csv"))
 
 wsb_reddit0 = pd.read_csv(os.path.join("static","data","WSB_rd_count_0.csv"))
@@ -32,6 +44,17 @@ wsb_reddit2 = pd.read_csv(os.path.join("static","data","WSB_rd_count_2.csv"))
 # wsb_reddit3 = pd.read_csv(os.path.join("static","data","WSB_rd_count_3.csv"))
 # wsb_reddit4 = pd.read_csv(os.path.join("static","data","WSB_rd_count_4.csv"))
 # wsb_reddit5 = pd.read_csv(os.path.join("static","data","WSB_rd_count_5.csv"))
+
+
+powell =  pd.read_csv(os.path.join("static","data","powell_lmkt_x.csv"))
+powell2 =  pd.read_csv(os.path.join("static","data","powell_mmkt_x.csv"))
+powell3 =  pd.read_csv(os.path.join("static","data","powell_smkt_x.csv"))
+
+
+powell.set_index("date",inplace=True)
+powell2.set_index("date",inplace=True)
+powell3.set_index("date",inplace=True)
+
 
 frames = [wsb_reddit0,wsb_reddit1]#,wsb_reddit2,wsb_reddit3,wsb_reddit4,wsb_reddit5]
 wsb_reddit=pd.concat(frames)
@@ -85,17 +108,17 @@ def header():
 def search_results():
     return render_template("search_results.html")   
 
-@app.route("/bubble_word")
+@app.route("/Trump_Effects")
 def bubble_word():
-    return render_template("bubble_word.html")
+    return render_template("Trump_Effects.html")
 
 @app.route("/bubble_phrase_cnt")
 def bubble_phrase_cnt():
     return render_template("bubble_phrase_cnt.html")  
 
-@app.route("/market_impact")
+@app.route("/wsb_effects")
 def market_impact():
-    return render_template("market_impact.html")   
+    return render_template("wsb_effects.html")   
 
 @app.route("/twitter_data")
 def twitter_data():
@@ -109,9 +132,9 @@ def reddit_data():
 def speech_data():
     return render_template("powelldata.html")     
 
-@app.route("/sentiment")
+@app.route("/powell_effects")
 def sentiment():
-    return render_template("sentiment.html")
+    return render_template("powell_effects.html")
 
 @app.route("/api/wsb/<date>")
 def wsb(date):
@@ -122,6 +145,38 @@ def wsb(date):
 def mlwsb(date):
     prediction = loaded_model.predict(wsb_lmkt_x.loc[[date]])
     prob = loaded_model.predict_proba(wsb_lmkt_x.loc[[date]])
+    mydict = {}
+    mydict['predict'] = float(prediction[0])
+    mydict['probneg']=float(prob[0][0])
+    mydict['probpos']=float(prob[0][1])
+    return  jsonify  (mydict) 
+
+@app.route("/ml/pow/<date>")
+def mlpow(date):
+    prediction = loaded_model2.predict(powell.loc[[date]])
+    prob = loaded_model2.predict_proba(powell.loc[[date]])
+    mydict = {}
+    mydict['predict'] = float(prediction[0])
+    mydict['probneg']=float(prob[0][0])
+    mydict['probpos']=float(prob[0][1])
+    return  jsonify  (mydict) 
+
+
+@app.route("/ml/pow_mid/<date>")
+def mlpowmid(date):
+    prediction = loaded_model3.predict(powell2.loc[[date]])
+    prob = loaded_model3.predict_proba(powell2.loc[[date]])
+    mydict = {}
+    mydict['predict'] = float(prediction[0])
+    mydict['probneg']=float(prob[0][0])
+    mydict['probpos']=float(prob[0][1])
+    return  jsonify  (mydict) 
+
+
+@app.route("/ml/pow_small/<date>")
+def mlpowsmall(date):
+    prediction = loaded_model4.predict(powell3.loc[[date]])
+    prob = loaded_model4.predict_proba(powell3.loc[[date]])
     mydict = {}
     mydict['predict'] = float(prediction[0])
     mydict['probneg']=float(prob[0][0])
