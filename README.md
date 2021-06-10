@@ -53,7 +53,7 @@ Data for features are saved in various csv files as shown in the table below.
    | WSB_Effects    | `wsb-rd_m1.ipynb`        | `wsb-rd_m2.ipynb`        | `wsb-rd_m3.ipynb`        |
    |                | `wsb_lgcap.model.sav`    | `wsb_mdcap.model.sav`    | `wsb_smcap.model.sav`    |
    | Powell_Effects | `powell_m1.ipynb`        | `powell_m2.ipynb`        | `powell_m3.ipynb`        |
-   |                | `powell_lgcap_model.sav` | `powell_mdcap_model.sav` | `powell_lgcap_model.sav` |
+   |                | `powell_lgcap_model.sav` | `powell_mdcap_model.sav` | `powell_smcap_model.sav` |
 
    `RandomForestClassifier` performs slightly better in most models.  Accuracy scores are also quite close.  For quick probability estimates and visualization purposes, `RandomForest Classifier` performs all final models.  Readers, interested in model predictions, may consider `RidgeClassifier` to run some models as well. 
 
@@ -97,4 +97,3 @@ Heroku is deployed to host the website, Heroku URL: https://anomalous.herokuapp.
 It might be good news that the models have low `roc_auc_scores` as it may indicate that the market is efficient and unlikely be tampered by influences. Given smaller amount of Powell Speeches in the models comparing to WSB Reddit and Trump Tweets, it is notable that the Powell's models perform best among the three influencers, though the small-cap model may need further investigation to find out whether it is overfitting since the results are inconsistent. Given new tools in data science, all sentiment counts maybe improved through deep learning; e.g., calculating weight of the impacts that an influencer has so that it may be used as a parameter in making predictions.  This project may be adapted to the firm level.
 
  
-
