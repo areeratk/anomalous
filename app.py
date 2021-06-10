@@ -20,8 +20,8 @@ app = Flask(__name__)
 # Database Setup
 #################################################
 wsb_lmkt_x = pd.read_csv(os.path.join("Data","wsb_lmkt_x.csv"))
-wsb_lmkt_x.set_index("Date", inplace=True)
-
+wsb_lmkt_x.set_index("date", inplace=True)
+# 'LOAD MODELS'
 filename = 'wsb_lgcap_model.sav'
 loaded_model = pickle.load(open(filename, 'rb'))
 
@@ -34,7 +34,26 @@ loaded_model3 = pickle.load(open(filename3, 'rb'))
 filename4 = 'powell_smcap_model.sav'
 loaded_model4 = pickle.load(open(filename4, 'rb'))
 
+filename5 = 'trump_lgcap_model.sav'
+loaded_model5 = pickle.load(open(filename5, 'rb'))
 
+filename6 = 'trump_mdcap_model.sav'
+loaded_model6 = pickle.load(open(filename6, 'rb'))
+
+filename7 = 'trump_smcap_model.sav'
+loaded_model7 = pickle.load(open(filename7, 'rb'))
+
+filename8 = 'wsb_lgcap_model.sav'
+loaded_model8 = pickle.load(open(filename8, 'rb'))
+
+filename9 = 'wsb_mdcap_model.sav'
+loaded_model9 = pickle.load(open(filename9, 'rb'))  
+
+filename10 = 'wsb_smcap_model.sav'
+loaded_model10 = pickle.load(open(filename10, 'rb'))
+
+
+# LOAD DATAFRAMES
 
 trump_tweeters = pd.read_csv(os.path.join("Data","trump_tweeters.csv"))
 
@@ -55,6 +74,23 @@ powell.set_index("date",inplace=True)
 powell2.set_index("date",inplace=True)
 powell3.set_index("date",inplace=True)
 
+trump =  pd.read_csv(os.path.join("static","data","trump_lmkt_x.csv"))
+trump2 =  pd.read_csv(os.path.join("static","data","trump_mmkt_x.csv"))
+trump3 =  pd.read_csv(os.path.join("static","data","trump_smkt_x.csv"))
+
+
+trump.set_index("date",inplace=True)
+trump2.set_index("date",inplace=True)
+trump3.set_index("date",inplace=True)
+
+wsb =  pd.read_csv(os.path.join("static","data","wsb_lmkt_x.csv"))
+wsb2 =  pd.read_csv(os.path.join("static","data","wsb_mmkt_x.csv"))
+wsb3 =  pd.read_csv(os.path.join("static","data","wsb_smkt_x.csv"))
+
+
+wsb.set_index("date",inplace=True)
+wsb2.set_index("date",inplace=True)
+wsb3.set_index("date",inplace=True)
 
 frames = [wsb_reddit0,wsb_reddit1]#,wsb_reddit2,wsb_reddit3,wsb_reddit4,wsb_reddit5]
 wsb_reddit=pd.concat(frames)
@@ -142,7 +178,7 @@ def wsb(date):
     return wsb_lmkt_x.loc[[date]].to_json()    
 
 @app.route("/ml/wsb/<date>")
-def mlwsb(date):
+def mlwsbd(date):
     prediction = loaded_model.predict(wsb_lmkt_x.loc[[date]])
     prob = loaded_model.predict_proba(wsb_lmkt_x.loc[[date]])
     mydict = {}
@@ -177,6 +213,72 @@ def mlpowmid(date):
 def mlpowsmall(date):
     prediction = loaded_model4.predict(powell3.loc[[date]])
     prob = loaded_model4.predict_proba(powell3.loc[[date]])
+    mydict = {}
+    mydict['predict'] = float(prediction[0])
+    mydict['probneg']=float(prob[0][0])
+    mydict['probpos']=float(prob[0][1])
+    return  jsonify  (mydict) 
+
+
+
+@app.route("/ml/trump/<date>")
+def mltrump(date):
+    prediction = loaded_model5.predict(trump.loc[[date]])
+    prob = loaded_model5.predict_proba(trump.loc[[date]])
+    mydict = {}
+    mydict['predict'] = float(prediction[0])
+    mydict['probneg']=float(prob[0][0])
+    mydict['probpos']=float(prob[0][1])
+    return  jsonify  (mydict) 
+
+
+@app.route("/ml/trump_mid/<date>")
+def mltrummid(date):
+    prediction = loaded_model6.predict(trump2.loc[[date]])
+    prob = loaded_model6.predict_proba(trump2.loc[[date]])
+    mydict = {}
+    mydict['predict'] = float(prediction[0])
+    mydict['probneg']=float(prob[0][0])
+    mydict['probpos']=float(prob[0][1])
+    return  jsonify  (mydict) 
+
+
+@app.route("/ml/trump_small/<date>")
+def mltrumpsmall(date):
+    prediction = loaded_model7.predict(trump3.loc[[date]])
+    prob = loaded_model7.predict_proba(trump3.loc[[date]])
+    mydict = {}
+    mydict['predict'] = float(prediction[0])
+    mydict['probneg']=float(prob[0][0])
+    mydict['probpos']=float(prob[0][1])
+    return  jsonify  (mydict) 
+
+@app.route("/ml/wsb/<date>")
+def mlwsb(date):
+    prediction = loaded_model8.predict(wsb.loc[[date]])
+    prob = loaded_model8.predict_proba(wsb.loc[[date]])
+    mydict = {}
+    mydict['predict'] = float(prediction[0])
+    mydict['probneg']=float(prob[0][0])
+    mydict['probpos']=float(prob[0][1])
+    return  jsonify  (mydict) 
+
+
+@app.route("/ml/wsb_mid/<date>")
+def mlwsbmid(date):
+    prediction = loaded_model9.predict(wsb2.loc[[date]])
+    prob = loaded_model9.predict_proba(wsb2.loc[[date]])
+    mydict = {}
+    mydict['predict'] = float(prediction[0])
+    mydict['probneg']=float(prob[0][0])
+    mydict['probpos']=float(prob[0][1])
+    return  jsonify  (mydict) 
+
+
+@app.route("/ml/wsb_small/<date>")
+def mlwsbsmall(date):
+    prediction = loaded_model10.predict(wsb3.loc[[date]])
+    prob = loaded_model10.predict_proba(wsb3.loc[[date]])
     mydict = {}
     mydict['predict'] = float(prediction[0])
     mydict['probneg']=float(prob[0][0])
@@ -236,80 +338,6 @@ def speech():
         all_results.append(results_dict)
     
     return jsonify(all_results)   
-
-# @app.route("/api/retweets/")
-# def retweets():
-#     sel = [Retweets.source, Retweets.text, Retweets.created_at, Retweets.retweet_count, Retweets.favorite_count, Retweets.id_str]
-#     results = db.session.query(*sel).all()
-
-#     all_results = []
-#     for source, text, created_at, retweet_count, favorite_count, id_str in results:
-#         results_dict = {}
-#         results_dict["source"] = source
-#         results_dict["text"] = text
-#         results_dict["created_at"] = created_at
-#         results_dict["retweet_count"] = retweet_count
-#         results_dict["favorite_count"] = favorite_count
-#         results_dict["id_str"] = id_str
-#         all_results.append(results_dict)
-    
-#     return jsonify(all_results)    
-
-
-
-# @app.route("/api/wordcnt/")
-# def wordcnt():
-#     sel = [Word_Counts.word, Word_Counts.cnt_word]
-#     results = db.session.query(*sel).order_by(Word_Counts.cnt_word.desc()).limit(50)
-
-#     all_results = []
-
-#     for _word_, _cnt_word_ in results:
-#         results_dict = {}
-#         results_dict["word"] = _word_
-#         results_dict["cnt_word"] = _cnt_word_
-#         all_results.append(results_dict)
-    
-#     return jsonify(all_results)
-
-# @app.route("/api/phrasecnt/")
-# def phrasecnt():
-#     sel = [Phrases.phrase_pkey, Phrases.phrase, Phrases.cnt_phrase]
-#     results = db.session.query(*sel).order_by(Phrases.cnt_phrase.desc()).limit(50)
-
-
-#     all_results = []
-#     for phrase_pkey, phrase, cnt_phrase in results:
-#         results_dict = {}
-#         results_dict["phrase_pkey"] = phrase_pkey
-#         results_dict["phrase"] = phrase
-#         results_dict["cnt_phrase"] = cnt_phrase
-#         all_results.append(results_dict)
-    
-#     return jsonify(all_results)
-
-
-# @app.route("/api/searchtweets/<searchpattern>")
-# def searchtweets(searchpattern):
-#     # print(f'Search Pattern: {searchpattern}')
-
-
-#     sel = [Tweets.source, Tweets.text, Tweets.created_at, Tweets.retweet_count, Tweets.favorite_count, Tweets.id_str]
-#     s_str = f'%{searchpattern}%'
-#     results = db.session.query(*sel).filter(Tweets.text.like(s_str)).all()
-
-#     all_results = []
-#     for source, text, created_at, retweet_count, favorite_count, id_str in results:
-#         results_dict = {}
-#         results_dict["source"] = source
-#         results_dict["text"] = text
-#         results_dict["created_at"] = created_at
-#         results_dict["retweet_count"] = retweet_count
-#         results_dict["favorite_count"] = favorite_count
-#         results_dict["id_str"] = id_str
-#         all_results.append(results_dict)
-    
-#     return jsonify(all_results)    
 
 
 if __name__ == "__main__":

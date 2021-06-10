@@ -30,9 +30,7 @@
         <div class="col-md-5 col-sm-5">
             <div class="container">
 
-                <div class="page_left">
-
-                    <br /><br />
+                <div class="page_right">
 
                     <br /><br /><img src="/static/img/Picture2.png" width="247px" height="182px">
 
@@ -52,6 +50,7 @@
 
         <div class="col-md-6 col-sm-6">
             <div class="page_left">
+                <br /><br />   
                 <h2>Exploring Influencers’ Remark Effects on the US Financial Market</h2>
 
                 <hr>
@@ -72,9 +71,7 @@
         <div class="row">
             <div class="col-md-5 col-sm-5">
                 <div class="container">
-                    <div class="page_left">
-
-                    <br /><br />
+                    <div class="page_right">
 
                     <br /><br /><img src="/static/img/jerome_cash.jpg" width="247px" height="182px">
 
@@ -92,11 +89,14 @@
             </div>
             <div class="col-md-6 col-sm-6">
                 <div class="page_left">
+                <br /><br />
                 <h2>Our Approach</h2>
                 <hr>
                 <p>
-                    Machine learning was applied to analyze the tweets by using scikit-learn libraries to determine the positive or negative sentiment of each tweet (NLTK) and determine counts for the most tweeted words and phrases (Count Vectorizer). Outcomes from the machine
-                    learning are used to visualize in Tableau any potential economic impacts the tweets might have on the following economic indicators:
+                    Machine learning, Count Vectorizer, was deployed to extract the tweets, reddits and speeches by using scikit-learn libraries to determine the economic keyword counts and financial positive or negative sentiments. See the NLP Data tabs. Material Design for Bootstrap was used forsearch and sort functionality of the data table.
+                
+                    <br /><br /> The following data are added to the models as labels or features for the findings: 
+                    
                     <li>SPY Large Cap ETF tracks the S&P 500, which represents large cap stocks</li>
                     <ul></ul>
                     <li>MDY Mid Cap ETF represents mid cap stocks</li>
@@ -108,7 +108,9 @@
                     <li>Real GDP Growth news releases which are represented by three estimates by quarter</li>
                     <ul></ul>
 
-                    JavaScript D3.JS was used to create visualizations of the word and phrase counts and Material Design for Bootstrap was used to for search and sort functionality of the data table.
+                    Outcomes from the natural language processing and the additionanl aforementioned data are used in machine learning predictive models, RandomForestRegression, RigdgeRegression, RidgeLogisticRegression, and RandomForest Classifier to interpret the non-fundamental effects and and suggest implementation.  Plotly is deployed to visualize the data and results.  See the Analysis tab.              
+                    
+                    <br /><br /> Flask is deployed for framework of the webpage structure and Javascript is deployed for functionality of webpage creation.
 
                 </p>
             </div>

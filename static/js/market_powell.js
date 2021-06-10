@@ -109,7 +109,7 @@ function loadcomplete(){
         // }
 
         var layout1 = {
-            title:"Economic Keyword Cpunt",
+            title:"Economic Keyword Count",
         
         }
 

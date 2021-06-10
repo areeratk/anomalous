@@ -29,82 +29,152 @@
 
 <div w3-include-html="./header"></div>
 
+<br></br>
+
+<center>
+    <h1>Data</h1>
+</center>
+
 <div class="container_main">
+    <div class="row">
     <!-- Start coding here -->
+    <div class="market-viz col-md-1 col-sm-1"></div>
+    <div id="vizContainer_comb1" class="market-viz col-md-10 col-sm-10"></div>
+    <div class="market-viz col-md-1 col-sm-1"></div>
+    <div id="vizContainer_comb2" class="market-viz col-md-10 col-sm-10"></div>
+    <div class="market-viz col-md-1 col-sm-1"></div>
+    <div id="vizContainer_comb3" class="market-viz col-md-10 col-sm-10"></div>
+    <div class="market-viz col-md-1 col-sm-1"></div>
+    <div id="vizContainer_comb8" class="market-viz col-md-10 col-sm-10"></div>
+    <div class="market-viz col-md-1 col-sm-1"></div>
+    <div id="vizContainer_comb7" class="market-viz col-md-10 col-sm-10"></div>
+    <div class="market-viz col-md-1 col-sm-1"></div>
+    <div id="vizContainer_comb4" class="market-viz col-md-10 col-sm-10"></div>
+    <div class="market-viz col-md-1 col-sm-1"></div>
+    <div id="vizContainer_comb5" class="market-viz col-md-10 col-sm-10"></div>
+    <div class="market-viz col-md-1 col-sm-1"></div>
+    <div id="vizContainer_comb6" class="market-viz col-md-10 col-sm-10"></div>
+  
+</div>
 
+<br></br>
+
+<center>
+    <h1>Predictive Model</h1>
+</center>
+
+<!-- <p style="margin-left: 100px"><h3>Large Cap</h3></p> -->
+
+<p style="text-indent: 200px"><h3> Large Cap</h3> </p>
+
+<!-- <h3> Large Cap</h3> -->
     <!-- <h3 class="market-viz">Market Impact</h3> -->
-    <input type="date" id="chooseDate" value="2019-03-05" min="2016-01-01" max="2021-04-30" onchange="updatechart()">
 
+
+    <select id="chooselrge" onchange="updatechartselect(this.value)"></select>
     <div class="row d-flex flex-wrap align-items-center">
        
-            <div class="col-md-12 col-sm-12" id="datapred">
-                <!-- <h4>GDP Tweets vs Stock Data</h2> -->
-                <div id="vizContainer_comb" class="market-viz"></div>
-                <!-- style="width:800px; height:600px;" -->
-            </div>
+        
+            <div id="vizContainer_large" class="market-viz col-sm-7 "></div>
+            <div id="datapredlrg" class="col-sm-2"> </div>
+            <div class="col-md-2 col-sm-2" id="datapred"> </div>
+                 
        
     </div>
 
-</div>
-<div class="row" id="data">
+    <br></br>
+    
+    <div class="row">
+        <div class="one-third column alpha"><img src="./static/img/wsb_LCapM_PPS_Matrix.png" height="360px"></img></div>
+        <div  class="one-third column"> <img src="./static/img/wsb_LCap_rf_y_pred.png" height="360px"></img></div>
+        <div class="one-third column omega"><img src="./static/img/wsb_LCap_rf_y_pred_confusion_matrix.png" height="360px"></img></div>
+       
+              
+                
+       
+    </div>
 
-</div>
+    <br></br>
+
+    <h3> Mid Cap</h3> 
+    <!-- <h3 class="market-viz">Market Impact</h3> -->
+    <select id="choose_mid" onchange="updatechartselect_mid(this.value)"></select>
+    <div class="row d-flex flex-wrap align-items-center">
+       
+        
+            <div id="vizContainer_mid" class="market-viz col-sm-7 "></div>
+            <div id="datapred_midimg" class="col-sm-2"> </div>
+            <div class="col-md-2 col-sm-2" id="datapred_mid"> </div>
+                 
+       
+    </div>
+    <div class="row">
+        <div class="one-third column alpha"><img src="./static/img/wsb_MCapM_PPS_Matrix.png" height="360px"></img></div>
+        <div  class="one-third column"> <img src="./static/img/wsb_MCap_rf_y_pred.png" height="360px"></img></div>
+        <div class="one-third column omega"><img src="./static/img/wsb_MCap_rf_y_pred_confusion_matrix.png" height="360px"></img></div>
+       
+              
+                
+       
+    </div>
+    <br></br>
+
+    <h3> Small Cap</h3> 
+    <!-- <h3 class="market-viz">Market Impact</h3> -->
+    <select id="choose_small" onchange="updatechartselect_small(this.value)"></select>
+    <div class="row d-flex flex-wrap align-items-center">
+       
+        
+            <div id="vizContainer_small" class="market-viz col-sm-7 "></div>
+            <div id="datapred_smallimg" class="col-sm-2"> </div>
+            <div class="col-md-2 col-sm-2" id="datapred_small"> </div>
+                 
+       
+    </div>
+    <div class="row">
+        <div class="one-third column alpha"><img src="./static/img/wsb_SCapM_PPS_Matrix.png" height="360px"></img></div>
+        <div  class="one-third column"> <img src="./static/img/wsb_SCap_rf_y_pred.png" height="360px"></img></div>
+        <div class="one-third column omega"><img src="./static/img/wsb_SCap_rf_y_pred_confusion_matrix.png" height="360px"></img></div>
+       
+              
+                
+       
+    </div>
+
+    <br></br>   
+           
+    
+    <!-- </div>
+
+
+</div> -->
 
 <div class="col-md-8 col-sm-7" class="market">
     <!-- <h4>GDP Tweets vs RGDP Data</h2> -->
     <div id="vizContainer_mid" class="market-viz"></div>
-    <div id="vizContainer_large" class="market-viz"></div>
+  
 
     <!-- style="width:800px; height:600px;"  -->
 </div>
 
+
+
+<center>
+    <h1>Conclusions</h1>
+</center>
+
+<br></br>
+
 <div class="row">
-    <div class="col-md-4 col-sm-3" class="market">
-
-        <h5 class="text">Does the Market Respond to Trump's Tweets?</h5>
-        <hr>
-        <p class="text">
-        <h6 class="text">Trump's Tweets as Word Counts on GDP Components</h6>
-        Graphically, observing the stock market categorized by sizes of market capitalization, large-cap (SPY ETF),
-        mid-cap (MDY ETF), and small-cap (IJR ETF) from January 2015 to December 2019, we see that the number of trump's
-        tweets on components of GDP by
-        months have both positive and negative relations to the changes in the stock markets, more so in the mid-cap
-        stocks and large-cap stocks respectively. The words that we count include words related to trade (e.g., trade,
-        China, tariff,
-        dumping, etc.), market (market, stock, gdp, etc.) and tax. The market in relation to the tweets shows more
-        volatility in 2018 and 2019. Looking closely at the patterns of Trump's tweets, we see that Trump tweeted about
-        market more in 2018
-        and 2019. Future analysis would involve investigating causality to see whether Trump's tweets are his reactions
-        to the markets or whether his tweets have any impacts to the market.
-        <br /><br />
-        </p>
-    </div>
-   
-    <div class="col-md-4 col-sm-3" class="market">
-
-        <h5 class="text">Does Trump Tweet in Response to the Economic Indicators Instead?</h5>
-        <hr>
-        <p class="text">
-        <h6 class="text">Trump's Tweet as Word Counts on GDP Components versus the Bureau of Economic Analysis (BEA) New
-            Releases on RGDP growth</h6>
-        Trump has tweeted more over times when the BEA new releases estimate increases in RGDP growth rates. His tweet
-        counts have been flat when the estimates show slow or negative RGDP growth rates.
-        <br /><br />
-        </p>
-    </div>
-    <div class="col-md-8 col-sm-7" class="market">
-        <!-- <h4>Employment Tweets vs Job Increses</h4> -->
-        <div id="vizContainer_small" class="market-viz"></div>
-        <!-- style="width:800px; height:600px;" -->
-    </div>
-    <div class="col-md-4 col-sm-3" class="market">
-        <p class="text">
+    <div class="col-md-1 col-sm-1" class="market"></div>
+    <div class="col-md-10 col-sm-10" class="market">
+        <!-- <p class="text">
         <h6 class="text">Trump's Tweet as Word Counts on Employment Situations versus the Bureau of Labor Statistics
             (BLS) New Releases on Non-Farm Employment</h6>
         In the same conclusions, Trump's tweet counts increase when the numbers of monthly job added are high and flat
         when they are low.
         <br /><br />
-        </p>
+        </p> -->
         <!-- <div class="col-md-12 col-sm-12" class="market"> -->
         <h5 class="text">Do Economic Indicators Matter to the Market?</h5>
         <hr>
@@ -128,7 +198,7 @@
     w3.includeHTML();
 </script>
 <script src="https://d3js.org/d3.v6.min.js"></script>
-<script src="../static/js/market.js"></script>
+<script src="../static/js/market_wsb.js"></script>
 </body>
 
 </html>
