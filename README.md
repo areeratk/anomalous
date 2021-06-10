@@ -42,19 +42,39 @@ Data for features are saved in various csv files as shown in the table below.
 
 ## Predictive Models
 
+1. `RandomForestRegression` and `RidgeRegression` first explore direct relationships of the features and labels -- percentage changes of stock prices based on their capital sizes.  The models show no signal.
 
+2. The labels then classify binary directions of positive or negative changes in daily stock prices.  `RandomForestClassifier` and `RidgeClassifier` explore and predict probabilities of the market movement directions.  Final models are saved in `.sav` files for building interactive predicting models.  See corresponding notebooks and `.sav` files below.
 
+   |                | Large-Cap Models         | Mid-cap Models           | Small-cap Models         |
+   | -------------- | ------------------------ | ------------------------ | ------------------------ |
+   | Trump_Effects  | `trump_m1.ipynb`         | `trump_m2.ipynb`         | `trump_m3.ipynb`         |
+   |                | `trump_lgcap_model.sav`  | `trump_mdcap_model.sav`  | `trump_smcap_model.sav`  |
+   | WSB_Effects    | `wsb-rd_m1.ipynb`        | `wsb-rd_m2.ipynb`        | `wsb-rd_m3.ipynb`        |
+   |                | `wsb_lgcap.model.sav`    | `wsb_mdcap.model.sav`    | `wsb_smcap.model.sav`    |
+   | Powell_Effects | `powell_m1.ipynb`        | `powell_m2.ipynb`        | `powell_m3.ipynb`        |
+   |                | `powell_lgcap_model.sav` | `powell_mdcap_model.sav` | `powell_lgcap_model.sav` |
 
+   `RandomForestClassifier` performs slightly better in most models.  Accuracy scores are also quite close.  For quick probability estimates and visualization purposes, `RandomForest Classifier` performs all final models.  Readers, interested in model predictions, may consider `RidgeClassifier` to run some models as well. 
 
 ## Interpretability and Predictability
 
 
 
+|                | Large-cap Model                                              | Mid-cap Model                                                | Small_cap Model                                              |
+| -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Trump_Effects  | `roc_auc_score` = 0.562                                      | `roc_auc_score` = 0.571                                      | `roc_auc_score` = 0.579                                      |
+|                | There is a signaling lag in the features influencing these predictions.  Positive-negative sentiment and favorites are quite strong across the Trump_Effects models. | There is no signaling lag in the features influencing these predictions. Fundamental and nonfundamental features alike are considered. | Similar to the small_cap powell_effect model The signal seems to come solely from the positive-negative sentiment and favorites. |
+| WSB_Effects    | `roc_auc_score` = 0.542                                      | `roc_auc_score` = 0.560                                      | `roc_auc_score` = 0.560                                      |
+|                | There is a signaling lag in the features influencing these predictions. Classification report show | RandomForestClassifier  provides balance estimates of the binary prediction. | Similar results to the wsb mid-cap model.                    |
+| Powell_Effects | `roc_auc_score` = 0.75                                       | `roc_auc_score` = 0.667                                      | `roc_auc_score` = 0.625                                      |
+|                | There is a signaling lag in the features influencing these predictions.  Positive and negative sentiment are quite strong.  Fundamental factors have less effects. | There is no signaling lag in the features influencing these predictions. Fundamental and nonfundamental features alike are considered. | The signal seems to come solely from positive-negative sentiment after observing feature importance.  The roc_auc_score, however is inconsistent. |
+
 
 
 ## Data Visualization
 
-
+Plotly reconstructs .sav files and all other generated in each model to display interactive line   graphs for data of the specific models.  Readers may zoom or create a block of time period of their interest to compare and explore the features data along side the stock data.  Readers may also explore interactive predicting models to indicate the probability of the direction of daily changes, including the models' ROC curve, PPS heatmap and and confusion matrix.  These interactive visualizations are available on the Analysis tab on the website explained below.  
 
 
 
@@ -70,10 +90,11 @@ Flask is deployed for framework of the webpage structure and JavaScript is deplo
 
 Heroku is deployed to host the website, Heroku URL: https://anomalous.herokuapp.com/.
 
+
+
 ## Conclusions
 
-
-
-
+It might be good news that the models have low `roc_auc_scores` as it may indicate that the market is efficient and unlikely be tampered by influences. Given smaller amount of Powell Speeches in the models comparing to WSB Reddit and Trump Tweets, it is notable that the Powell's models perform best among the three influencers, though the small-cap model may need further investigation to find out whether it is overfitting since the results are inconsistent. Given new tools in data science, all sentiment counts maybe improved through deep learning; e.g., calculating weight of the impacts that an influencer has so that it may be used as a parameter in making predictions.  This project may be adapted to the firm level.
 
  
+
